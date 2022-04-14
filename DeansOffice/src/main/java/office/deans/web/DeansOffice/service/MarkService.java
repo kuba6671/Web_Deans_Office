@@ -18,4 +18,8 @@ public class MarkService {
     public List<Mark> getStudentMarks(Long indexNumber){
         return markRepository.findMarkByIndexNumber(indexNumber);
     }
+
+    public Mark addMark(Mark mark) {
+        return markRepository.save(mark);
+    }
 }

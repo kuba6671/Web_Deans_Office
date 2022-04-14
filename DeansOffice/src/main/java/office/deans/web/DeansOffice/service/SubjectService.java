@@ -1,6 +1,7 @@
 package office.deans.web.DeansOffice.service;
 
 import lombok.RequiredArgsConstructor;
+import office.deans.web.DeansOffice.model.Mark;
 import office.deans.web.DeansOffice.model.Subject;
 import office.deans.web.DeansOffice.repository.SubjectRepository;
 import org.springframework.stereotype.Service;
@@ -16,4 +17,7 @@ public class SubjectService {
         return subjectRepository.findAll();
     }
 
+    public Subject addSubject(Subject subject) {
+        return subjectRepository.save(subject);
+    }
 }

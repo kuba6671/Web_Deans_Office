@@ -11,6 +11,8 @@ import java.util.List;
 @Entity
 public class Mark {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MARK_SEQ")
+    @SequenceGenerator(sequenceName = "mark_seq", allocationSize = 1, name = "MARK_SEQ")
     private Long markID;
     private Long indexNumber;
     @ManyToOne
