@@ -2,6 +2,8 @@ package office.deans.web.DeansOffice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import office.deans.web.DeansOffice.model.persons.Student;
+import office.deans.web.DeansOffice.model.persons.Teacher;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,10 +16,18 @@ public class Mark {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MARK_SEQ")
     @SequenceGenerator(sequenceName = "mark_seq", allocationSize = 1, name = "MARK_SEQ")
     private Long markID;
-    private Long indexNumber;
+
+    @ManyToOne
+    @JoinColumn(name="indexNumber")
+    private Student student;
+    //private Long indexNumber;
+
     @ManyToOne
     @JoinColumn(name="subjectid")
     private Subject subject;
-    private Long teacherID;
+
+    @ManyToOne
+    @JoinColumn(name="teacherID")
+    private Teacher teacher;
     private Double value;
 }

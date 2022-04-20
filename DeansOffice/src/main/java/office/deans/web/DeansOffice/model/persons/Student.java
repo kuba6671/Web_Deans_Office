@@ -2,9 +2,13 @@ package office.deans.web.DeansOffice.model.persons;
 
 import lombok.Getter;
 import lombok.Setter;
+import office.deans.web.DeansOffice.model.StudentGroup;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Getter
 @Setter
@@ -12,6 +16,8 @@ import javax.persistence.Id;
 public class Student extends Person {
     @Id
     private Long indexNumber;
-    private Long groupID;
     private String fieldOfStudy;
+    @ManyToOne
+    @JoinColumn(name="groupID")
+    private StudentGroup group;
 }

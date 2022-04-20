@@ -2,9 +2,9 @@ package office.deans.web.DeansOffice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import office.deans.web.DeansOffice.model.persons.Student;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -12,6 +12,8 @@ import java.util.Date;
 @Entity
 public class Proposal {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROPOSAL_SEQ")
+    @SequenceGenerator(sequenceName = "proposal_seq", allocationSize = 1, name = "PROPOSAL_SEQ")
     private Long proposalID;
     private String proposalName;
     private Date date;
@@ -19,5 +21,7 @@ public class Proposal {
     private Integer income;
     private double avg;
     private String decision;
-    private Long indexNumber;
+    @ManyToOne
+    @JoinColumn(name="indexNumber")
+    private Student student;
 }

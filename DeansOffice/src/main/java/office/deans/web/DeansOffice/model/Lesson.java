@@ -2,19 +2,33 @@ package office.deans.web.DeansOffice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import office.deans.web.DeansOffice.model.persons.Teacher;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Time;
 
 @Getter
 @Setter
 @Entity
 public class Lesson {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LESSON_SEQ")
+    @SequenceGenerator(sequenceName = "lesson_seq", allocationSize = 1, name = "LESSON_SEQ")
     private Long lessonID;
     private Double lessonTime;
-    private Long timetableID;
-    private Long weekdayID;
-    private Long subjectID;
-    private Long teacherID;
+    @ManyToOne
+    @JoinColumn(name="timetableID")
+    private Timetable timetable;
+
+    @ManyToOne
+    @JoinColumn(name="weekdayID")
+    private Weekday weekday;
+
+    @ManyToOne
+    @JoinColumn(name="subjectid")
+    private Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name="teacherID")
+    private Teacher teacher;
 }
