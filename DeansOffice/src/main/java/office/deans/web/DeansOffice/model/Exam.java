@@ -15,7 +15,7 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXAM_SEQ")
     @SequenceGenerator(sequenceName = "exam_seq", allocationSize = 1, name = "EXAM_SEQ")
     private Long examID;
-    private Date date;
+    private Date examDate;
     private String type;
     @ManyToOne
     @JoinColumn(name="groupID")

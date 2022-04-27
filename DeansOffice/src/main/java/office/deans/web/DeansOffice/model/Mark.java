@@ -20,7 +20,6 @@ public class Mark {
     @ManyToOne
     @JoinColumn(name="indexNumber")
     private Student student;
-    //private Long indexNumber;
 
     @ManyToOne
     @JoinColumn(name="subjectid")
