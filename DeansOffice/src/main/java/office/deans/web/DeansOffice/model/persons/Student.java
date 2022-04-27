@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import office.deans.web.DeansOffice.model.StudentGroup;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 
 @Getter
