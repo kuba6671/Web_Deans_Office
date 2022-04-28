@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class LessonDto {
+public class StudentLessonDto {
     private String subjectName;
     private String weekdayName;
     private Double lessonTime;

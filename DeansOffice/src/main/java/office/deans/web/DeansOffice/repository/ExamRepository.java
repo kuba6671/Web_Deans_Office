@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ExamRepository extends JpaRepository<Exam, Long> {
-    public List<Exam> findExamByGroup_GroupID(Long groupID, Sort sort);
+    List<Exam> findExamByGroup_GroupID(Long groupID, Sort sort);
 }

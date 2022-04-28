@@ -18,4 +18,8 @@ public class LessonService {
     public List<Lesson> getGroupLessons(Long groupID, Sort.Direction sort){
         return lessonRepository.findLessonByTimetable_Group_GroupID(groupID, Sort.by(sort, "weekday","lessonTime"));
     }
+
+    public List<Lesson> getTeacherLessons(Long teacherID, Sort.Direction sort){
+        return lessonRepository.findLessonByTeacher_TeacherID(teacherID, Sort.by(sort, "weekday","lessonTime"));
+    }
 }
