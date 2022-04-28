@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ExamDtoMapper {
-   // public ExamDtoMapper(){}
 
     public static List<ExamDto> mapToExamDtos(List<Exam> exams){
         return exams.stream()

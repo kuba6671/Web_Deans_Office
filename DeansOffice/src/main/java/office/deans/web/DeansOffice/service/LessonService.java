@@ -22,4 +22,8 @@ public class LessonService {
     public List<Lesson> getTeacherLessons(Long teacherID, Sort.Direction sort){
         return lessonRepository.findLessonByTeacher_TeacherID(teacherID, Sort.by(sort, "weekday","lessonTime"));
     }
+
+    public Lesson addLesson(Lesson lesson){
+        return lessonRepository.save(lesson);
+    }
 }

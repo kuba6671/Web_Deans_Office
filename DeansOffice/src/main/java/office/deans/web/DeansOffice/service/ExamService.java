@@ -17,4 +17,8 @@ public class ExamService {
         return examRepository.findExamByGroup_GroupID(groupID,Sort.by(sort,"examDate"));
     }
 
+    public Exam addExam(Exam exam){
+        return examRepository.save(exam);
+    }
+
 }

@@ -1,7 +1,6 @@
 package office.deans.web.DeansOffice.repository;
 
 import office.deans.web.DeansOffice.model.Lesson;
-import office.deans.web.DeansOffice.model.Timetable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
