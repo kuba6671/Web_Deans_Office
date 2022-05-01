@@ -16,10 +16,10 @@ public class Proposal {
     @SequenceGenerator(sequenceName = "proposal_seq", allocationSize = 1, name = "PROPOSAL_SEQ")
     private Long proposalID;
     private String proposalName;
-    private Date date;
-    private Integer session;
+    private Date proposalDate;
+    private Integer academicSession;
     private Integer income;
-    private double avg;
+    private Double markAVG;
     private String decision;
     @ManyToOne
     @JoinColumn(name="indexNumber")

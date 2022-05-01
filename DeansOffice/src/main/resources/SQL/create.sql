@@ -45,10 +45,10 @@ ALTER TABLE officeemployee ADD CONSTRAINT officeemployee_pk PRIMARY KEY ( office
 CREATE TABLE proposal (
     proposalid    INTEGER NOT NULL,
     proposalname  VARCHAR2(30),
-    "date"        DATE,
-    "session"     INTEGER,
+    proposalDate        DATE,
+    academicSession     INTEGER,
     income        INTEGER,
-    avg           FLOAT(4),
+    markAVG           FLOAT(4),
     indexnumber   INTEGER NOT NULL,
     decision      VARCHAR2(30)
 );
@@ -97,7 +97,7 @@ ALTER TABLE teacher ADD CONSTRAINT teacher_pk PRIMARY KEY ( teacherid );
 
 CREATE TABLE timetable (
     timetableid  INTEGER NOT NULL,
-    groupid      INTEGER UNIQUE NOT NULL
+    groupid      INTEGER NOT NULL
 );
 
 CREATE UNIQUE INDEX timetable__idx ON
