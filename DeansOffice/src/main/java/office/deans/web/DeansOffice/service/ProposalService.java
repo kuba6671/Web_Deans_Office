@@ -5,6 +5,7 @@ import office.deans.web.DeansOffice.model.Proposal;
 import office.deans.web.DeansOffice.repository.InsertProposalRepository;
 import office.deans.web.DeansOffice.repository.ProposalRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,5 +31,12 @@ public class ProposalService {
 
     public Proposal addFellowShipForm(Proposal proposal){
         return insertProposalRepository.addFellowShipForm(proposal);
+    }
+
+    @Transactional
+    public Proposal updateDecision(Proposal proposal){
+        Proposal proposalUpdated = proposalRepository.findById(proposal.getProposalID()).orElseThrow();
+        proposalUpdated.setDecision(proposal.getDecision());
+        return proposalUpdated;
     }
 }

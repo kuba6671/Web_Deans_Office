@@ -40,4 +40,9 @@ public class ProposalController {
     public Proposal addFellowShipForm(@RequestBody Proposal proposal){
         return proposalService.addFellowShipForm(proposal);
     }
+
+    @PostMapping("/Proposals")
+    public Proposal updateProposal(@RequestBody Proposal proposal){
+        return proposalService.updateDecision(proposal);
+    }
 }
