@@ -18,8 +18,8 @@ public class ExamController {
 
     private ExamDtoMapper examDtoMapper;
 
-    @GetMapping("/exams")
-    public List<ExamDto> getExams(@RequestParam Long groupID, Sort.Direction sort){
+    @GetMapping("/exams/{groupID}")
+    public List<ExamDto> getExams(@PathVariable Long groupID, Sort.Direction sort){
         Sort.Direction sortDirection = sort != null ? sort : Sort.Direction.ASC;
         return examDtoMapper.mapToExamDtos(examService.getStudentExams(groupID,sortDirection));
     }

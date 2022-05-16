@@ -16,8 +16,8 @@ public class MarkController {
 
     private MarkDtoMapper markDtoMapper;
 
-    @GetMapping("/marks/{id}")
-    public List<MarkDto> getMarks(@RequestParam Long indexNumber){
+    @GetMapping("/marks/{indexNumber}")
+    public List<MarkDto> getMarks(@PathVariable Long indexNumber){
         return markDtoMapper.mapToMarkDtos(markService.getStudentMarks(indexNumber));
     }
 

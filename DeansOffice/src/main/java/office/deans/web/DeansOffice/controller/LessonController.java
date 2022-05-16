@@ -21,14 +21,14 @@ public class LessonController {
     private StudentLessonDtoMapper studentLessonDtoMapper;
     private TeacherLessonDtoMapper teacherLessonDtoMapper;
 
-    @GetMapping("/studentLessons")
-    public List<StudentLessonDto> getGroupLessons(@RequestParam Long groupID, Sort.Direction sort){
+    @GetMapping("/studentLessons/{groupID}")
+    public List<StudentLessonDto> getGroupLessons(@PathVariable Long groupID, Sort.Direction sort){
         Sort.Direction sortDirection = sort != null ? sort : Sort.Direction.ASC;
         return studentLessonDtoMapper.mapToStudentLessonDtos(lessonService.getGroupLessons(groupID,sortDirection));
     }
 
-    @GetMapping("/teacherLessons")
-    public List<TeacherLessonDto> getTeacherLessons(@RequestParam Long teacherID, Sort.Direction sort){
+    @GetMapping("/teacherLessons/{teacherID}")
+    public List<TeacherLessonDto> getTeacherLessons(@PathVariable Long teacherID, Sort.Direction sort){
         Sort.Direction sortDirection = sort != null ? sort : Sort.Direction.ASC;
         return teacherLessonDtoMapper.mapToTeacherLessonDtos(lessonService.getTeacherLessons(teacherID,sortDirection));
     }

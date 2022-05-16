@@ -17,8 +17,8 @@ public class StudentController {
         return studentService.getStudents();
     }
 
-    @GetMapping("/students/{id}")
-    public List<Student> getStudentsByGroup(@RequestParam Long groupID){
+    @GetMapping("/students/{groupID}")
+    public List<Student> getStudentsByGroup(@PathVariable Long groupID){
         return studentService.getStudentByGroup(groupID);
     }
 
