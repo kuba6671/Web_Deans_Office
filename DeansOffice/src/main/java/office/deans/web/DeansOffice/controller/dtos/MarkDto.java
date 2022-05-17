@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class MarkDto {
     private String name;
-    private Double value;
+    private BigDecimal value;
 
-    public MarkDto(String name, Double value) {
+    public MarkDto(String name, BigDecimal value) {
         this.name = name;
-        if(value <2.0 || value >5.0)
+        if(value.doubleValue() <2.0 || value.doubleValue() >5.0)
             throw new IllegalArgumentException("Mark value must be from 2.0-5.0 range");
         this.value = value;
     }

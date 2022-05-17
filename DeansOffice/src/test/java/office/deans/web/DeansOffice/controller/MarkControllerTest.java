@@ -3,29 +3,19 @@ package office.deans.web.DeansOffice.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import office.deans.web.DeansOffice.controller.dtos.MarkDto;
-import office.deans.web.DeansOffice.model.Mark;
-import office.deans.web.DeansOffice.model.persons.Student;
-import office.deans.web.DeansOffice.repository.MarkRepository;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -50,15 +40,15 @@ class MarkControllerTest {
 
         assertNotNull(markDtoList);
         assertEquals(markDtoList.get(0).getName(),"testName");
-        assertEquals(markDtoList.get(0).getValue(),3.0);
-        assertEquals(markDtoList.get(1).getValue(),5.0);
+        assertEquals(markDtoList.get(0).getValue().doubleValue(),3.0);
+        assertEquals(markDtoList.get(1).getValue().doubleValue(),5.0);
     }
 
     @Test
     void shouldThrownIllegalArgumentExceptionWhenMarkValueIsOutOfRange(){
         IllegalArgumentException exception =
                 assertThrows(IllegalArgumentException.class,
-                        () -> new MarkDto("testName",1.0));
+                        () -> new MarkDto("testName",new BigDecimal(1.00)));
         assertEquals("Mark value must be from 2.0-5.0 range",exception.getMessage());
     }
 }

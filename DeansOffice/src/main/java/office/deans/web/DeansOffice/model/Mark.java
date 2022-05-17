@@ -4,9 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import office.deans.web.DeansOffice.model.persons.Student;
 import office.deans.web.DeansOffice.model.persons.Teacher;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -28,5 +31,6 @@ public class Mark {
     @ManyToOne
     @JoinColumn(name="teacherID")
     private Teacher teacher;
-    private Double value;
+    @Range(min =2, max = 5)
+    private BigDecimal value;
 }

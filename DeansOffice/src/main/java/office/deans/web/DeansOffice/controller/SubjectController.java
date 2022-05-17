@@ -3,11 +3,9 @@ package office.deans.web.DeansOffice.controller;
 import lombok.RequiredArgsConstructor;
 import office.deans.web.DeansOffice.model.Subject;
 import office.deans.web.DeansOffice.service.SubjectService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +20,7 @@ public class SubjectController {
     }
 
     @PostMapping("/subjects")
-    public Subject addSubject(@RequestBody Subject subject){
+    public Subject addSubject(@Valid @RequestBody Subject subject){
         return subjectService.addSubject(subject);
     }
 }
