@@ -1,7 +1,7 @@
 package office.deans.web.DeansOffice.controller;
 
 import lombok.RequiredArgsConstructor;
-import office.deans.web.DeansOffice.model.persons.Student;
+import office.deans.web.DeansOffice.model.users.Student;
 import office.deans.web.DeansOffice.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,13 +2,11 @@ package office.deans.web.DeansOffice.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import office.deans.web.DeansOffice.model.persons.Student;
-import office.deans.web.DeansOffice.model.persons.Teacher;
+import office.deans.web.DeansOffice.model.users.Student;
+import office.deans.web.DeansOffice.model.users.Teacher;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
 @Getter

@@ -30,6 +30,10 @@ dependencies {
 
 	implementation group: 'org.jetbrains', name: 'annotations', version: '23.0.0'
 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'com.auth0:java-jwt:3.19.2'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

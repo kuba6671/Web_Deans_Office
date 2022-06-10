@@ -1,4 +1,4 @@
-package office.deans.web.DeansOffice.model.persons;
+package office.deans.web.DeansOffice.model.users;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Student extends Person {
+public class Student extends User {
     @Id
     private Long indexNumber;
     private String fieldOfStudy;

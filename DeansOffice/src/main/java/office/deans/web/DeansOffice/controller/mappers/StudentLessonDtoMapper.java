@@ -4,7 +4,7 @@ import office.deans.web.DeansOffice.controller.dtos.StudentLessonDto;
 import office.deans.web.DeansOffice.model.Lesson;
 import office.deans.web.DeansOffice.model.Subject;
 import office.deans.web.DeansOffice.model.Weekday;
-import office.deans.web.DeansOffice.model.persons.Teacher;
+import office.deans.web.DeansOffice.model.users.Teacher;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,7 +1,7 @@
 package office.deans.web.DeansOffice.service;
 
 import lombok.RequiredArgsConstructor;
-import office.deans.web.DeansOffice.model.persons.Student;
+import office.deans.web.DeansOffice.model.users.Student;
 import office.deans.web.DeansOffice.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package office.deans.web.DeansOffice.model.persons;
+package office.deans.web.DeansOffice.model.users;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Min;
 @Getter
 @Setter
 @MappedSuperclass
-public class Person {
+public class User {
     private String name;
     private String surname;
     @Min(1)

@@ -1,6 +1,6 @@
 CREATE TABLE exam (
     examid     INTEGER NOT NULL,
-    "date"     DATE,
+    examdate     DATE,
     type       VARCHAR2(30),
     groupid    INTEGER NOT NULL,
     teacherid  INTEGER NOT NULL,
@@ -32,7 +32,7 @@ ALTER TABLE mark ADD CONSTRAINT mark_pk PRIMARY KEY ( markid );
 
 CREATE TABLE officeemployee (
     officeemployeeid  INTEGER NOT NULL,
-    password          VARCHAR2(30),
+    password          VARCHAR2(100),
     name              VARCHAR2(30),
     surname           VARCHAR2(30),
     age               INTEGER,
@@ -57,7 +57,7 @@ ALTER TABLE proposal ADD CONSTRAINT proposal_pk PRIMARY KEY ( proposalid );
 
 CREATE TABLE student (
     indexnumber   INTEGER NOT NULL,
-    password      VARCHAR2(30),
+    password      VARCHAR2(100),
     name          VARCHAR2(30),
     surname       VARCHAR2(30),
     age           INTEGER,
@@ -85,7 +85,7 @@ ALTER TABLE subject ADD CONSTRAINT subject_pk PRIMARY KEY ( subjectid );
 
 CREATE TABLE teacher (
     teacherid    INTEGER NOT NULL,
-    password     VARCHAR2(30),
+    password     VARCHAR2(100),
     name         VARCHAR2(30),
     surname      VARCHAR2(30),
     age          INTEGER,

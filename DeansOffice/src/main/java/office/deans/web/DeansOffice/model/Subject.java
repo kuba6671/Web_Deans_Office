@@ -17,7 +17,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUBJECT_SEQ")
     @SequenceGenerator(sequenceName = "subject_seq", allocationSize = 1, name = "SUBJECT_SEQ")
     private Long subjectID;
-    
+
     @NotBlank
     @NotNull
     private String name;

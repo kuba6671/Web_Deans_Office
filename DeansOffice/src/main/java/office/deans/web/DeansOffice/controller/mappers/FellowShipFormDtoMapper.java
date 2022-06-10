@@ -2,7 +2,7 @@ package office.deans.web.DeansOffice.controller.mappers;
 
 import office.deans.web.DeansOffice.controller.dtos.FellowShipFormDto;
 import office.deans.web.DeansOffice.model.Proposal;
-import office.deans.web.DeansOffice.model.persons.Student;
+import office.deans.web.DeansOffice.model.users.Student;
 
 import java.util.List;
 import java.util.stream.Collectors;

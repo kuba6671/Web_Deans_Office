@@ -2,7 +2,7 @@ package office.deans.web.DeansOffice.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import office.deans.web.DeansOffice.model.persons.Teacher;
+import office.deans.web.DeansOffice.model.users.Teacher;
 
 import javax.persistence.*;
 import java.util.Date;
