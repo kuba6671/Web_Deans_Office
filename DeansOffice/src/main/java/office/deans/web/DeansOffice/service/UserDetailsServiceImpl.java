@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -32,19 +33,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Teacher teacherUser = teacherRepository.getTeacherByMail(username);
         OfficeEmployee officeEmployeeUser = officeEmployeeRepository.getOfficeEmployeeByMail(username);
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        if(studentUser!=null){
+        if (studentUser != null) {
             authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
             springUser = new User(studentUser.getMail(), studentUser.getPassword(), authorities);
-        }
-        else if(teacherUser!=null){
+        } else if (teacherUser != null) {
             authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
             springUser = new User(teacherUser.getMail(), teacherUser.getPassword(), authorities);
-        }
-        else if(officeEmployeeUser!=null){
+        } else if (officeEmployeeUser != null) {
             authorities.add(new SimpleGrantedAuthority("ROLE_OFFICEEMPLOYEE"));
             springUser = new User(officeEmployeeUser.getMail(), officeEmployeeUser.getPassword(), authorities);
-        }
-        else{
+        } else {
             throw new UsernameNotFoundException("User not exist");
         }
         return springUser;

@@ -1,45 +1,26 @@
-import React ,{useState} from "react";
-import LoginForm from "./components/LoginForm";
-
+import {useLocalState} from "./util/useLocalStorage";
+import {Route, Routes} from 'react-router-dom';
+import Dashboard from "./Dashboard";
+import Homepage from "./Homepage";
+import Login from "./Login";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
-  const adminUser = {
-    email: "admin@admin.com",
-    password: "admin123"
-  }
-
-  const[user, setUser] = useState({name: "", email: ""})
-  const[error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-
-    if(details.email ==  adminUser.email && details.password == adminUser.password){
-        console.log("Logged in");
-        setUser({
-          name: details.name,
-          email: details.email
-        });
-    } else{
-      console.log("Details do not match!");
-      setError("Details do not match!");
-    }
-  }
-
-  const Logout = () => {
-   setUser({name: "", email: ""});
-  }
+    const [jwt, setJwt] = useLocalState("","jwt");
 
   return (
-    <div className="App">
-      {(user.email != "") ?(
-          <div className="welcome">
-            <h2>Welcome, <span>{user.name}</span></h2>
-            <button onClick={Logout}>Logout</button>
-          </div>
-      ) : (
-          <LoginForm Login={Login} error={error} />
-      )}
+      <div className="App">
+          <Routes>
+          <Route
+              path="/dashboard"
+              element={
+              <PrivateRoute>
+              <Dashboard/>
+              </PrivateRoute>
+          } />
+
+          <Route path="/" element={ <Login />} />
+      </Routes>
       </div>
   );
 }
