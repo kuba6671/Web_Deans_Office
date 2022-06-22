@@ -2,6 +2,7 @@ package office.deans.web.DeansOffice.config;
 
 import lombok.RequiredArgsConstructor;
 import office.deans.web.DeansOffice.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,11 +23,10 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
-
     private final StudentRepository studentRepository;
 
+    @Autowired
     private JwtUtil jwtUtil;
-
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -39,13 +39,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
         final String token  = header.split(" ")[1].trim();
 
-        UserDetails userDetails = (UserDetails) studentRepository
+        UserDetails userDetails = studentRepository
                 .getStudentByMail(jwtUtil.getUsernameFromToken(token));
-
-        if(!jwtUtil.validateToken(token, userDetails)){
-            chain.doFilter(request,response);
-            return;
-        }
 
         UsernamePasswordAuthenticationToken
                 authentication = new UsernamePasswordAuthenticationToken(

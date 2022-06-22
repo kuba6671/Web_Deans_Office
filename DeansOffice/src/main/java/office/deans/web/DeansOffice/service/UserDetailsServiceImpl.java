@@ -32,16 +32,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Student studentUser = studentRepository.getStudentByMail(username);
         Teacher teacherUser = teacherRepository.getTeacherByMail(username);
         OfficeEmployee officeEmployeeUser = officeEmployeeRepository.getOfficeEmployeeByMail(username);
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
         if (studentUser != null) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
-            springUser = new User(studentUser.getMail(), studentUser.getPassword(), authorities);
+            springUser = new User(studentUser.getMail(), studentUser.getPassword(), studentUser.getAuthorities());
         } else if (teacherUser != null) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
-            springUser = new User(teacherUser.getMail(), teacherUser.getPassword(), authorities);
+            springUser = new User(teacherUser.getMail(), teacherUser.getPassword(), teacherUser.getAuthorities());
         } else if (officeEmployeeUser != null) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_OFFICEEMPLOYEE"));
-            springUser = new User(officeEmployeeUser.getMail(), officeEmployeeUser.getPassword(), authorities);
+            springUser = new User(officeEmployeeUser.getMail(), officeEmployeeUser.getPassword(), officeEmployeeUser.getAuthorities());
         } else {
             throw new UsernameNotFoundException("User not exist");
         }
