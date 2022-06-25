@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocalState} from "../util/useLocalStorage";
 
 const Login = () => {
@@ -11,7 +11,6 @@ const Login = () => {
                 "username": username,
                 "password": password
             }
-
             fetch("api/auth/login", {
                 headers: {
                     "Content-type": "application/json",
@@ -27,7 +26,17 @@ const Login = () => {
                 })
                 .then(([body, headers]) => {
                     setJwt(headers.get("authorization"));
-                    window.location.href = "dashboard";
+                    const role = body.authorities[0].authority;
+                    if( role ==="ROLE_STUDENT"){
+                        // student view
+                        window.location.href = "dashboard";
+                    }
+                    else if(role=="ROLE_TEACHER"){
+                        // teacher view
+                    }
+                    else if(role ==="ROLE_OFFICEEMPLOYEE"){
+                        // officeEmployee view
+                    }
                 })
                 .catch((message) => {
                     alert(message);

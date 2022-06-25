@@ -4,7 +4,6 @@ export default function SubjectService(props){
 
     const displaySubjects = (props) => {
         const {menu, subjects} = props;
-        console.log(props);
 
         if(subjects.length > 0){
                     return(
