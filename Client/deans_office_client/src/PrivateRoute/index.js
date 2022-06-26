@@ -4,7 +4,7 @@ import {useLocalState} from "../util/useLocalStorage";
 
 const PrivateRoute = ({children}) => {
     const[jwt, setJwt] = useLocalState("","jwt");
-    return jwt ? children : <Navigate to="/"/>;
+    return jwt ? children : <Navigate to="/home"/>;
 };
 
 export default PrivateRoute;

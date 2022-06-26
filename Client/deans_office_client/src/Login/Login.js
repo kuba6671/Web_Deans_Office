@@ -1,48 +1,47 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useLocalState} from "../util/useLocalStorage";
+import './Login.css'
 
 const Login = () => {
+    console.log("LOGIN");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const [token, setToken] = useLocalState('', 'token')
     const [jwt, setJwt] = useLocalState("", "jwt");
+
     function sendLoginRequest(){
             const reqBody = {
                 "username": username,
-                "password": password
+                "password": password,
             }
+
             fetch("api/auth/login", {
                 headers: {
                     "Content-type": "application/json",
                 },
                 method: "post",
-                body: JSON.stringify(reqBody),
+                body: JSON.stringify(reqBody)
             })
                 .then((response) => {
                         if (response.status === 200)
-                            return Promise.all([response.json(), response.headers]);
+                            return Promise.all([response.json(), response.headers, response.body]);
                         else
                             return Promise.reject("Invalid login attempt");
                 })
                 .then(([body, headers]) => {
                     setJwt(headers.get("authorization"));
-                    const role = body.authorities[0].authority;
-                    if( role ==="ROLE_STUDENT"){
-                        // student view
-                        window.location.href = "dashboard";
-                    }
-                    else if(role=="ROLE_TEACHER"){
-                        // teacher view
-                    }
-                    else if(role ==="ROLE_OFFICEEMPLOYEE"){
-                        // officeEmployee view
-                    }
+                    const role = body.authorities[0].authority
+                    setToken(role)
+                    console.log(jwt);
+                    console.log(token)
+                    window.location.href = "/home";
                 })
                 .catch((message) => {
                     alert(message);
                 });
     }
 
+    
     return (
         <form onSubmit={sendLoginRequest}>
             <div className="form-inner">

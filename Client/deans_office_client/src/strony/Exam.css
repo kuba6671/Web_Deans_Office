@@ -1,0 +1,11 @@
+.egzamin{
+    height: 90vh;
+    background-color: rgb(1,1,93);
+}
+
+.egzamin-header {
+    justify-content: center;
+    text-align: center;
+    padding: 100px;
+    color: aliceblue
+}

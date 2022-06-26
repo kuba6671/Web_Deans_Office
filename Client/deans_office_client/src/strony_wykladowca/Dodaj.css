@@ -1,0 +1,57 @@
+.dodaj {
+    display: block;
+    position: relative;
+    color:white !important
+
+}
+
+.dodaj::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    left: -5px;
+    bottom: -5px;
+    z-index: 1;
+    background-image: linear-gradient(to bottom right, red, rgb(112, 8, 8));
+    border-radius: 5px;
+}
+
+.form-in{
+    position: relative;
+    display: block;
+    background-color: rgb(112, 8, 8);
+    padding: 30px;
+    z-index: 2;
+    text-align: center;
+    align-items: center;
+    border-radius: 8px;
+
+}
+
+.dodajocene{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(121, 18, 18);
+}
+
+option, select{
+    border-radius: 8px;
+    padding: 5px;
+}
+
+
+.marksubmit {
+    margin: 15px;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    background-size: 300%;
+    background-position: 0%;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    background-color: red;
+}
