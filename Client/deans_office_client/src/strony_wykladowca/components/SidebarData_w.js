@@ -8,18 +8,18 @@ export const SidebarData_w = [
         title: 'Home',
         path: '/home',
         icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
+        cName: 'nav-textw'
     },
     {
         title: 'Dodaj Oceny',
         path: '/DodajOceny',
         icon: <AiIcons.AiFillFileMarkdown />,
-        cName: 'nav-text'
+        cName: 'nav-textw'
     },
     {
         title: 'Egzaminy',
         path: '/Egzaminy',
         icon: <AiIcons.AiFillSchedule />,
-        cName: 'nav-text'
+        cName: 'nav-textw'
     },
 ]

@@ -3,7 +3,6 @@ import {useLocalState} from "../util/useLocalStorage";
 import './Login.css'
 
 const Login = () => {
-    console.log("LOGIN");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useLocalState('', 'token')

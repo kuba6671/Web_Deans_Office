@@ -34,7 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(121, 18, 18);
+    background-color: white;
 }
 
 option, select{

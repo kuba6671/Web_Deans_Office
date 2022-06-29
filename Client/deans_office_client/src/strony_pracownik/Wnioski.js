@@ -1,55 +1,53 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocalState } from '../util/useLocalStorage';
+import axios from 'axios';
 import './Wnioski.css'
-import axios from 'axios'
+function Wnioski() {
+  
+  const [jwt, setJwt] = useLocalState('', 'jwt')
+  const [socials, getSocials] = useState('')
+  const [fellows, getFellows] = useState('')
 
-export class Wnioski extends Component {
-  constructor(props) {
-    super(props)
+  useEffect(() => {
+    getAllSocials();
+  }, []);
 
-    this.state = {
-      socjal: [],
-      nauk: []
-    }
-  }
+  const getAllSocials = () => {
+    axios.get('/SocialGramtForm', {
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+        }
+    })
+        .then((response) => {
+            const allSocial = response.data;
+            getSocials(allSocial);
+            console.log(jwt);
+        })
+        .catch(error => console.error(`Error:  ${error}`));
+}
+  
 
-  componentDidMount(){
-    axios.get('http://localhost:8080/SocialGrantForm')
-    .then(response => {
-      console.log(response)
-      this.setState({socjal: response.data})
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    axios.get('http://localhost:8080/FellowShipForm')
-    .then(response => {
-      console.log(response)
-      this.setState({nauk: response.data})
-    })
-    .catch(error => {
-      console.log(error)
-    })
+useEffect(() => {
+  getAllFellows();
+}, []);
 
-  }
-  render() {
-    return (
-      <div className='wnioski'>
-        <div className='wnioski-container-out'>
-          <div className='wnioski-container-in'>
-            <div className='wnioski-header'>
-              <h2>Wnioski</h2>
-            </div>
-            <div className='wnioski-content'>
-              <p>Wnioski o stypędium socjalne:</p>
-              <li></li>
-              <p>Wnioski o stypędium naukowe:</p>
-              <li></li>
-           </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+const getAllFellows = () => {
+  axios.get('/FellowShipForm', {
+      headers: {
+          'Authorization': `Bearer ${jwt}`
+      }
+  })
+      .then((response) => {
+          const allFellows = response.data;
+          getFellows(allFellows);
+          console.log(jwt);
+      })
+      .catch(error => console.error(`Error:  ${error}`));
+}
+  return (
+<>
+</>
+  )
 }
 
 export default Wnioski

@@ -2,13 +2,11 @@ import React, {useEffect, useState} from "react";
 import {useLocalState} from "../util/useLocalStorage";
 import axios from "axios";
 import SubjectService from "../Services/SubjectService";
-import Navbar from "./compnents/Navbar";
 
 export default function Dashboard() {
     const [jwt, setJwt] = useLocalState("","jwt");
     const[subjects, getSubjects] = useState('');
     const [token, setToken] = useLocalState("");
-    const [name, setName] = useLocalState("", "name");
 
     useEffect(() => {
         getAllSubjects();
@@ -32,7 +30,6 @@ export default function Dashboard() {
     return(
         <>
         <SubjectService subjects={subjects}/>
-        <Navbar />
         </>
     )
 }

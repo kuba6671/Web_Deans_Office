@@ -1,4 +1,5 @@
 import React from 'react';
+import './subject.css'
 
 export default function SubjectService(props){
 
@@ -33,7 +34,7 @@ export default function SubjectService(props){
                     )
         }
         else{
-            return (<h3>No subjects</h3>)
+            return (<h3>Brak Przedmiotów</h3>)
         }
     }
     return(
