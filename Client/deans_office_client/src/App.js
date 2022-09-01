@@ -18,10 +18,13 @@ import Wnioski from "./strony_pracownik/Wnioski";
 import FormSocjal from "./strony/FormSocjal";
 import Exam from "./strony/Exam";
 import Platnosci from "./strony/Platnosci";
+import Oceny from "./strony/Oceny";
 
 function App() {
-    const [token, setToken] = useLocalState('', 'token');
+  const token = 'ROLE_STUDENT'
+    //const [token, setToken] = useLocalState('', 'token');
     const [jwt, setJwt] = useLocalState("","jwt");
+
   return (
     <div className='Main'>
     {(token !== 'NieZalogowany') ? (
@@ -42,6 +45,7 @@ function App() {
             <Route path='FormSocjal' element={<FormSocjal />} />
             <Route path='Exam' element={<Exam />} />
             <Route path='Platnosci' element={<Platnosci />} />
+            <Route path='Oceny' element={<Oceny />} />
             </Routes>
             </Then>
             <Else>

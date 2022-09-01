@@ -12,7 +12,7 @@ export const SidebarData = [
     },
     {
         title: 'Oceny',
-        path: '/Dashboard',
+        path: '/Oceny',
         icon: <AiIcons.AiFillBook/>,
         cName: 'nav-text'
     },
@@ -38,6 +38,12 @@ export const SidebarData = [
         title: 'Płatnści',
         path: '/Platnosci',
         icon: <AiIcons.AiTwotoneWallet />,
+        cName: 'nav-text'
+    },
+    {
+        title: 'Przedmioty',
+        path: '/Dashboard',
+        icon: <AiIcons.AiFillBook/>,
         cName: 'nav-text'
     }
 ]

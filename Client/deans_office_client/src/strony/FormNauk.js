@@ -35,8 +35,8 @@ export class FormNauk extends Component {
    const {imie, nazwisko, dochod, avg} = this.state
     return (
      <div className='formnauk'>
-     <form onSubmit={this.submitNaukHandler} className='dodaj'>
-   <div className='form-in'>
+     <form onSubmit={this.submitNaukHandler} className='dodaje'>
+   <div className='form-ine'>
    <label>Imie:</label>
    <br />
    <input type='text' name='imie' value={imie} onChange={this.changeHandler}/>

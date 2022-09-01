@@ -34,8 +34,8 @@ export class FormSocjal extends Component {
     const { imie, nazwisko, dochod, ocena } = this.state 
     return (
       <div className='formsocjal'>
-      <form className='dodaj' onSubmit={this.submitSocjalHandler}>
-        <div className='form-in'>
+      <form className='dodajw' onSubmit={this.submitSocjalHandler}>
+        <div className='form-inw'>
         <label>Imie:</label>
         <br />
         <input type='text' name='imie' value={imie} onChange={this.changeHandler} />

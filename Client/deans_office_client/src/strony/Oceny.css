@@ -10,7 +10,7 @@
     color: aliceblue
 }
 
-.getExam{
+.getMark{
     position:static;
     display: flex; 
     height: 90vh;
@@ -20,7 +20,7 @@
     background-color: white;
   }
 
-  .getExamin{
+  .getMarkin{
     position: relative;
     display: block;
     background-color: #060b26;
@@ -32,13 +32,13 @@
 
 }
 
-.getExamform{
+.getMarkform{
     display: block;
     position: relative;
     color: white;
   }
   
-  .getExamform::after {
+  .getMarkform::after {
     content: '';
     display: block;
     position: absolute;

@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import { useLocalState } from '../util/useLocalStorage';
 import axios from 'axios';
-import ExamService from './ExamsService';
+import MarksService from './MarksService'
 
-function Exam() {
-
+function Oceny() {
   const [jwt, setJwt] = useLocalState('', 'jwt')
-  const [exams, getExams] = useState('')
+  const [marks, getMarks] = useState('')
 
   useEffect(() => {
-    getAllExams();
+    getAllMarks();
   }, []);
 
-  const getAllExams = () => {
-    axios.get('/exams', {
+  const getAllMarks = () => {
+    axios.get('/marks', {
         headers: {
             'Authorization': `Bearer ${jwt}`
         }
     })
         .then((response) => {
-            const allExams = response.data;
-            getExams(allExams);
+            const allMarks = response.data;
+            getMarks(allMarks);
             console.log(jwt);
         })
         .catch(error => console.error(`Error:  ${error}`));
 }
   return (
     <>
-    <ExamService exams={exams}/>
+    <MarksService marks={marks}/>
     </>
   )
 }
 
-export default Exam
+export default Oceny
