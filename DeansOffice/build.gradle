@@ -30,6 +30,14 @@ dependencies {
 
 	implementation group: 'org.jetbrains', name: 'annotations', version: '23.0.0'
 
+	implementation group: 'org.json', name: 'json', version: '20220320'
+
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+	implementation group: 'org.springframework.social', name: 'spring-social-facebook', version: '2.0.3.RELEASE'
+
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.7.3'
+
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'com.auth0:java-jwt:3.19.2'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
