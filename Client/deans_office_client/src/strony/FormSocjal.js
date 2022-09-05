@@ -1,61 +1,62 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
+import {useLocalState} from "../util/useLocalStorage";
 import axios from 'axios'
 import './FormSocjal.css'
 
 
-export class FormSocjal extends Component {
-  constructor(props) {
-    super(props)
+const FormSocjal = () => {
+  const [income, setIncome] = useState("");
+  const [indexNumber, setIndexNumber] = useState("");
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
-    this.state = {
-      imie: '',
-      nazwisko: '',
-      dochod: '',
-      ocena: ''
+  function saveFellowShipProposal() {
+    const reqBody = {
+      "proposalName" : 'Stypendium naukowe',
+      "proposalDate" : Date.UTC,
+      "income" : income,
+      "student" : {
+        "age": 20,
+        "group": {
+          "groupID": 12345
+        },
+        "indexNumber" : indexNumber
+      }
     }
+    fetch("/FellowShipForm", {
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        "Content-type": "application/json",
+    },
+    method: "post",
+    body: JSON.stringify(reqBody)
+    })
   }
 
-    changeHandler = (e) => {
-      this.setState({[e.target.name]: e.target.value})
-    }
-
-    submitSocjalHandler = (e) => {
-      e.preventDefault()
-      console.log(this.social)
-      axios.post('https://my-json-server.typicode.com/typicode/demo/posts', this.state)
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
-  render() {
-    const { imie, nazwisko, dochod, ocena } = this.state 
-    return (
-      <div className='formsocjal'>
-      <form className='dodajw' onSubmit={this.submitSocjalHandler}>
-        <div className='form-inw'>
-        <label>Imie:</label>
-        <br />
-        <input type='text' name='imie' value={imie} onChange={this.changeHandler} />
-        <br />
-        <label>Nazwisko:</label>
-        <br />
-        <input type='text' name='nazwisko' value={nazwisko}  onChange={this.changeHandler}  />
-        <br />
-        <label>Średnia Ocen:</label>
-        <br />
-        <input type='number' name='dochod' value={dochod}  onChange={this.changeHandler}  />
-        <br />
-        <label>Ocena:</label>
-        <br/>
-        <input className='marksubmit' type='submit'/>
-      </div>
-    </form>
+  return (
+    <div className='formnauk'>
+    <form onSubmit={saveFellowShipProposal} className='dodaje'>
+    <div className='form-ine'>
+    <label>Index:</label>
+    <br />
+    <input 
+      type='text' 
+      name='indexNumber'
+      value={indexNumber}
+      onChange={(e) => setIndexNumber(e.target.value)}/>
+    <br />
+    <label>Dochód:</label>
+    <br />
+    <input 
+      type='text'
+      name='income'
+      value={income} 
+      onChange={(e) => setIncome(e.target.value)} />
+    <br />
+    <input type='submit'/>
     </div>
+</form>
+</div>
     )
-  }
 }
 
 export default FormSocjal

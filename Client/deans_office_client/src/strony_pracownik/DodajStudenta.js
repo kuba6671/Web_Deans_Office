@@ -1,120 +1,137 @@
-import React, { Component } from 'react'
+import React, { Component, useState} from 'react'
+import {useLocalState} from "../util/useLocalStorage";
 import './DodajStudenta.css'
 import axios from 'axios'
 import RestMethodsService from '../Services/RestMethods.service'
+import http from "../http-common"
 
-export default class DodajStudenta extends Component {
-  constructor(props) {
-    super(props)
+const DodajStudenta = () => {
+  const [indexNumber, setindexNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setImie] = useState("");
+  const [surname, setSurName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [fieldOfStudy, setFieldOfStudy] = useState("");
+  const [groupID, setGroupID] = useState("");
+  const [age, setAge] = useState("");
+  const [mail, setMail] = useState("");
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
-    this.state = {
-      groupID: 12345,
-      indexNumber: 10,
-      mail: "string@ds.pl",
-      name: "string",
-      password: "string",
-      phoneNumber: "string",
-      surname: "string",
-      username: "string"
+  function saveStudentRequest() {
+    const reqBody = {
+      "indexNumber": indexNumber,
+      "password": password,
+      "name": name,
+      "surname": surname,
+      "phoneNumber": phoneNumber,
+      "fieldOfStudy": fieldOfStudy,
+      "group" : {
+        "groupID": 12345
+      },
+      "fieldOfStudy": fieldOfStudy,
+      "mail": mail,
+      "age": age,
     }
-
-    this.jwt = {
-        jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtQG9wLnBsIiwiZXhwIjoxNjYyMzM4Nzk2LCJpYXQiOjE2NjIzMjA3OTZ9.ha5O0zIoTALd3ZaSzO8nWRKBZCTC_fPwflaX-4_79tBzrSEb5_duw8HPKIwo-AzJSx47MJP3xyIpYFtzARRA0Q'
-    }
-  }
-
-  onChangeGroupId(e) {
-    this.setState({
-      
-    })
-  }
-
-  saveStudent = (e) => {
-    e.preventDefault()
-      console.log(this.state)
-    var data = {
-      age : 1,
-      groupID: 12345,
-      indexNumber: 12345,
-      mail: "sds@sds.pl",
-      name: "tomek",
-      password: "sds",
-      phoneNumber: "123456",
-      surname: "this.state.surname",
-      username: "this.state.username",
+    fetch("/students", {
       headers: {
-        'Authorization': `Bearer ${this.jwt}`
-    }
-    };
-    RestMethodsService.addStudent(data)
-    .then(response => {
-      this.setState({
-        indexNumber: response.data.indexNumber,
-        surname: response.data.surname
-      });
-      console.log(response.data);
+        'Authorization': `Bearer ${jwt}`,
+        "Content-type": "application/json",
+    },
+    method: "post",
+    body: JSON.stringify(reqBody)
     })
-    .catch(e => {
-      console.log(e);
-    });
   }
 
+  return (
+          <div className='dodajocene_p'>
+          <form onSubmit={saveStudentRequest} className='dodaj_p'>
+              <div className='form-in_p'>
+                <div className='add-student-header'><h2>Dodaj Studenta</h2></div>
+              <label>Index Studenta: </label>
+            <br />
+              <input 
+              type='number' 
+              name='indexNumber' 
+              value={indexNumber} 
+              onChange={(e) => setindexNumber(e.target.value)}/>
+            <br />
+              <label>Imie: </label>
+            <br />
+              <input 
+              type='text' 
+              name='name' 
+              value={name}
+              onChange={(e) => setImie(e.target.value)}/>
+            <br />
+              <label>Nazwisko: </label>
+            <br />
+              <input 
+              type='text' 
+              name='surname' 
+              value={surname}
+              onChange={(e) => setSurName(e.target.value)}
+              />
+            <br />
+              <label>Kierunek:</label>
+            <br />
+              <input 
+              type='text' 
+              name='fieldOfStudy' 
+              value={fieldOfStudy}
+              onChange={(e) => setFieldOfStudy(e.target.value)}/>
+            <br />
+            <label>Grupa:</label>
+            <br />
+              <input
+               type='text' 
+               name='groupID' 
+               value={groupID}
+               onChange={(e) => setGroupID(e.target.value)}
+               />
+            <br />
+            <label>Wiek:</label>
+            <br />
+              <input
+               type='text' 
+               name='age' 
+               value={age}
+               onChange={(e) => setAge(e.target.value)}
+               />
+            <br />
+            <label>Numer telefonu:</label>
+            <br />
+              <input
+               type='text' 
+               name='phoneNumber' 
+               value={phoneNumber}
+               onChange={(e) => setPhoneNumber(e.target.value)}
+               />
+            <br />
+            <label>Hasło:</label>
+            <br />
+              <input
+               type='text' 
+               name='password' 
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               />
+            <br/>
+            <label>Mail:</label>
+            <br/>
+              <input
+               type='text' 
+               name='mail' 
+               value={mail}
+               onChange={(e) => setMail(e.target.value)}
+               />
+            <br/>
+            <button id="submit" type="button" onClick={() => saveStudentRequest()} >
+                    SUBMIT
+                </button>
+              </div>
+          </form>
+      </div>
+  )
+};
 
-
-
-
-    changeHandler = (e) => {
-      this.setState({[e.target.name]: e.target.value})
-    }
-
-    
-    // submitStudentHandler = (e) => {
-    //   e.preventDefault()
-    //   console.log(this.state)
-    //   axios.post('students', this.state,       
-    //   headers: {
-    //     'Authorization': `Bearer ${this.jwt}`
-    // })
-    //     .then(response => {
-    //       console.log(response)
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // }
-
-
-  render() {
-    const { age, groupID, indexNumber, mail, imie, surname, group, fieldOfStudy} = this.state
-    return (
-      <div className='dodajocene_p'>
-      <form onSubmit={this.saveStudent} className='dodaj_p'>
-          <div className='form-in_p'>
-            <div className='add-student-header'><h2>Dodaj Studenta</h2></div>
-          <label>Index Studenta: </label>
-        <br />
-          <input type='number' name='indexNumber' value={indexNumber} placeholder='90289' onChange={this.changeHandler} />
-        <br />
-          <label>Imie: </label>
-        <br />
-          <input type='text' name='imie' value={imie} placeholder='Daniel' onChange={this.changeHandler} />
-        <br />
-          <label>Nazwisko: </label>
-        <br />
-          <input type='text' name='surname' value={surname} placeholder='Kozłowski' onChange={this.changeHandler} />
-        <br />
-          <label>Kierunek:</label>
-        <br />
-          <input type='text' name='fieldOfStudy' value={fieldOfStudy} placeholder='inforamtyka' onChange={this.changeHandler} />
-        <br />
-        <label>Grupa:</label>
-        <br />
-          <input type='number' name='groupID' value={group} placeholder='12B' onChange={this.changeHandler} />
-        <br />
-          <input className='marksubmit_p' type='submit' />
-          </div>
-      </form>
-  </div>
-    )
-  }
-}
+export default DodajStudenta;

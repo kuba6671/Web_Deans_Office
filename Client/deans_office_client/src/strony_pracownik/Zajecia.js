@@ -1,41 +1,41 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import axios from 'axios'
 import './Zajecia.css'
+import {useLocalState} from "../util/useLocalStorage";
 
-export class Zajecia extends Component {
-    constructor(props){
-        super(props)
+const Zajecia = () => {
+    const [lessonTime, setLessonTime] = useState("");
+    const [weekday, setWeekday] = useState("");
+    const [subject, setSubject] = useState("");
+    const [teacher, setTeacher] = useState("");
+    const [jwt, setJwt] = useLocalState("", "jwt");
 
-        this.state = {
-            teacher: '',
-            room: '',
-            subject: '',
-            group: '',
-            date: ''
+    function saveLessonRequest() {
+        const reqBody = {
+            "lessontime": lessonTime,
+            "weekday": {
+                "weekdayId" : weekday
+            },
+            "subject": {
+                "subjectID": subject
+            },
+            "teacher": {
+                "teacherID": teacher
+            }
         }
+        fetch("/lessons", {
+            headers: {
+              'Authorization': `Bearer ${jwt}`,
+              "Content-type": "application/json",
+          },
+          method: "post",
+          body: JSON.stringify(reqBody)
+          })
     }
 
-    changeHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value})
-    }
-
-    submitClassesHandler = (e) => {
-        e.preventDefault()
-        console.log(this.state)
-        axios.post('', this.state)
-        .then (response =>{
-            console.log(response)
-        })
-        .catch (error =>{
-            console.log(error)
-        })
-    }
-
-  render() {
-    const { teacher, room, subject, group, date } = this.state
     return (
       <div className='Zajecia-full'>
-        <form className='form-outside' onSubmit={this.submitClassesHandler}>
+        <form className='form-outside' onSubmit={saveLessonRequest}>
             <div className='form-inside'>
             <div className='form-header'>
             <h2>Ustal Termin Zajec</h2>
@@ -43,32 +43,42 @@ export class Zajecia extends Component {
             <div className='form-text'>
                 <label>Wykładowca:</label>
                 <br />
-                <input type='number' name='teacher' value={teacher} onChange={this.changeHandler}/>
+                    <input 
+                    type='number' 
+                    name='teacher'
+                    value={teacher} 
+                    onChange={(e) => setTeacher(e.target.value)}/>
                 <br />
-                <label>Sala:</label>
+                <label>Dzień tygodania:</label>
                 <br />
-                <input type='text' name='room' value={room} onChange={this.changeHandler} />
+                    <input 
+                    type='text' 
+                    name='weekday' 
+                    value={weekday} 
+                    onChange={(e) => setWeekday(e.target.value)} />
                 <br />
                 <label>Przedmiot:</label>
                 <br />
-                <input type='text' name='subject' value={subject} onChange={this.changeHandler} />
+                    <input 
+                    type='text' 
+                    name='subject' 
+                    value={subject} 
+                    onChange={(e) => setSubject(e.target.value)} />
                 <br />
-                <label>Grupa:</label>
+                <label>Godzina:</label>
                 <br />
-                <input type='text' name='group' value={group} onChange={this.changeHandler} />
-                <br />
-                <label>Data odbywania sie zajeć:</label>
-                <br />
-                <input type='date' name='date' value={date} onChange={this.changeHandler} />
+                    <input 
+                    type='time' 
+                    name='lessonTime' 
+                    value={lessonTime} 
+                    onChange={(e) => setLessonTime(e.target.value)} />
                 <br />
                 <input type='submit' />
             </div>
             </div>
         </form>
-        
       </div>
     )
-  }
-}
+};
 
 export default Zajecia
