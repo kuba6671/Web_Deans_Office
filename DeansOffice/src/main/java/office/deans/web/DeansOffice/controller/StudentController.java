@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
     private final StudentService studentService;
 
@@ -21,8 +22,7 @@ public class StudentController {
     public List<Student> getStudentsByGroup(@PathVariable Long groupID){
         return studentService.getStudentByGroup(groupID);
     }
-    
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @RequestMapping(method = RequestMethod.POST, path = "/students")
     public Student addStudent(@RequestBody Student student){
         return studentService.addStudent(student);
