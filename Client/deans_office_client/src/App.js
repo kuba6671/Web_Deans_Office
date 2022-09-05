@@ -21,8 +21,7 @@ import Platnosci from "./strony/Platnosci";
 import Oceny from "./strony/Oceny";
 
 function App() {
-  const token = 'ROLE_STUDENT'
-    //const [token, setToken] = useLocalState('', 'token');
+    const [token, setToken] = useLocalState('', 'token');
     const [jwt, setJwt] = useLocalState("","jwt");
 
   return (
