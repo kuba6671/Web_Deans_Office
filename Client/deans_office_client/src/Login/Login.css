@@ -75,6 +75,11 @@ form{
     color: #FFF !important;
     font-weight: 700 !important;
     cursor: pointer !important;
+    font-size: 20px !important;
+  }
+
+  #facebookLogin{
+      background-image: linear-gradient(to right, #0086ff 50%, #08b3ff 50%, #08d5ff) !important;
   }
   
   form .form-inner input[type="submit"]:hover,

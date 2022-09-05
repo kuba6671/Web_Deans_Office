@@ -60,7 +60,6 @@ public class FacebookServiceImpl implements FacebookService {
     @Override
     public void getCode() {
         String facebookAuthorizeUrl = generateFacebookAuthorizeUrl();
-        System.out.println(facebookAuthorizeUrl);
         browse(facebookAuthorizeUrl);
     }
 

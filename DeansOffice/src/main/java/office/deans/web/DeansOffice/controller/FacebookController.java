@@ -2,6 +2,7 @@ package office.deans.web.DeansOffice.controller;
 
 import lombok.RequiredArgsConstructor;
 import office.deans.web.DeansOffice.service.FacebookServiceImpl;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,8 @@ public class FacebookController {
 
     @GetMapping("/login")
     public String facebookUserLogin() throws InterruptedException {
-        return facebookService.facebookUserLogin();
+        String data = facebookService.facebookUserLogin();
+        String jsonObject = "{\"facebookUserStatus\":"+"\""+data+"\"}";
+        return jsonObject;
     }
 }

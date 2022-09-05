@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useLocalState } from '../util/useLocalStorage';
 import axios from 'axios';
 import './Wnioski.css'
+import FellowShipService from './FellowShipService';
+
 function Wnioski() {
   
   const [jwt, setJwt] = useLocalState('', 'jwt')
@@ -46,6 +48,7 @@ const getAllFellows = () => {
 }
   return (
 <>
+<FellowShipService fellows={fellows}/>
 </>
   )
 }
