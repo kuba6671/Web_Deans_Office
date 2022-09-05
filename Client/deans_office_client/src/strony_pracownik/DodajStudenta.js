@@ -1,22 +1,65 @@
 import React, { Component } from 'react'
 import './DodajStudenta.css'
 import axios from 'axios'
+import RestMethodsService from '../Services/RestMethods.service'
 
-export class DodajStudenta extends Component {
+export default class DodajStudenta extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      indexNumber: '',
-      surname: '',
-      group: '',
-      fieldOfStudy: ''
+      groupID: 12345,
+      indexNumber: 10,
+      mail: "string@ds.pl",
+      name: "string",
+      password: "string",
+      phoneNumber: "string",
+      surname: "string",
+      username: "string"
     }
 
     this.jwt = {
-        jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGVrQHdwLnBsIiwiZXhwIjoxNjU2MTIxNjg3LCJpYXQiOjE2NTYxMDM2ODd9.ykELWYzEa4HgpVY47IglUJXxVkgJZmUNOaeanPbpWxiY-vhrWjDPtjqwpDF8VDb_3K7jtoxkRJwZRvRoiDZAEw'
+        jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtQG9wLnBsIiwiZXhwIjoxNjYyMzM4Nzk2LCJpYXQiOjE2NjIzMjA3OTZ9.ha5O0zIoTALd3ZaSzO8nWRKBZCTC_fPwflaX-4_79tBzrSEb5_duw8HPKIwo-AzJSx47MJP3xyIpYFtzARRA0Q'
     }
   }
+
+  onChangeGroupId(e) {
+    this.setState({
+      
+    })
+  }
+
+  saveStudent = (e) => {
+    e.preventDefault()
+      console.log(this.state)
+    var data = {
+      age : 1,
+      groupID: 12345,
+      indexNumber: 12345,
+      mail: "sds@sds.pl",
+      name: "tomek",
+      password: "sds",
+      phoneNumber: "123456",
+      surname: "this.state.surname",
+      username: "this.state.username",
+      headers: {
+        'Authorization': `Bearer ${this.jwt}`
+    }
+    };
+    RestMethodsService.addStudent(data)
+    .then(response => {
+      this.setState({
+        indexNumber: response.data.indexNumber,
+        surname: response.data.surname
+      });
+      console.log(response.data);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+  }
+
+
 
 
 
@@ -25,25 +68,27 @@ export class DodajStudenta extends Component {
     }
 
     
-    submitStudentHandler = (e) => {
-      e.preventDefault()
-      console.log(this.state)
-      axios.post('students', this.state,       
-      {headers: {
-        'Authorization': `Bearer ${this.jwt}`
-    }})
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
+    // submitStudentHandler = (e) => {
+    //   e.preventDefault()
+    //   console.log(this.state)
+    //   axios.post('students', this.state,       
+    //   headers: {
+    //     'Authorization': `Bearer ${this.jwt}`
+    // })
+    //     .then(response => {
+    //       console.log(response)
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // }
+
+
   render() {
-    const { indexNumber, imie, surname, group, fieldOfStudy} = this.state
+    const { age, groupID, indexNumber, mail, imie, surname, group, fieldOfStudy} = this.state
     return (
       <div className='dodajocene_p'>
-      <form onSubmit={this.submitStudentHandler} className='dodaj_p'>
+      <form onSubmit={this.saveStudent} className='dodaj_p'>
           <div className='form-in_p'>
             <div className='add-student-header'><h2>Dodaj Studenta</h2></div>
           <label>Index Studenta: </label>
@@ -64,7 +109,7 @@ export class DodajStudenta extends Component {
         <br />
         <label>Grupa:</label>
         <br />
-          <input type='text' name='group' value={group} placeholder='12B' onChange={this.changeHandler} />
+          <input type='number' name='groupID' value={group} placeholder='12B' onChange={this.changeHandler} />
         <br />
           <input className='marksubmit_p' type='submit' />
           </div>
@@ -73,5 +118,3 @@ export class DodajStudenta extends Component {
     )
   }
 }
-
-export default DodajStudenta

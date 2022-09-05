@@ -33,7 +33,7 @@ const Login = () => {
                     setToken(role)
                     console.log(jwt);
                     console.log(token)
-                    window.location.href = "/home";
+                    window.location.reload();
                 })
                 .catch((message) => {
                     alert(message);
