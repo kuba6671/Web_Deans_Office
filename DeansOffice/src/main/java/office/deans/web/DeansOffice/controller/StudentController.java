@@ -21,8 +21,9 @@ public class StudentController {
     public List<Student> getStudentsByGroup(@PathVariable Long groupID){
         return studentService.getStudentByGroup(groupID);
     }
-
-    @PostMapping("/students")
+    
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(method = RequestMethod.POST, path = "/students")
     public Student addStudent(@RequestBody Student student){
         return studentService.addStudent(student);
     }
